@@ -1,5 +1,5 @@
 <div id="contacts-list">
-    {% if contacts %}
+    
         <div class="overflow-x-auto">
             <table class="table table-zebra table-pin-rows">
                 <thead>
@@ -7,25 +7,31 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Created at</th>
+                        <th>Document</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="contact-table-body">
-                    {% for contact in contacts %}
-                        {% include 'partials/contact-row.html' %}
-                    {% endfor %}
+                    {% if contacts %}
+                        {% for contact in contacts %}
+                            {% include 'partials/contact-row.html' %}
+                        {% endfor %}
+                    {% else %}
+                        <tr class="no-contact-row">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-error">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 shrink-0 stroke-current"
+                                        fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>No contacts found.</span>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
-    {% else %}
-        <div role="alert" class="alert alert-error">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 class="h-6 w-6 shrink-0 stroke-current"
-                 fill="none"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>No contacts found.</span>
-        </div>
-    {% endif %}
 </div>

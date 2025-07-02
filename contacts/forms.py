@@ -16,7 +16,15 @@ class ContactForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={
             'class': 'input input-bordered w-full',
             'placeholder': 'Email Address'
-        })
+        }),
+        
+    )
+
+    document = forms.FileField(
+        widget=forms.FileInput(attrs={
+            'class': 'file-input file-input-bordered w-full',
+        }),
+        required=False
     )
 
     def clean_email(self):
@@ -31,5 +39,5 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = (
-            'name', 'email'
+            'name', 'email', 'document'
         )
